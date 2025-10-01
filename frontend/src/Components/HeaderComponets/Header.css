@@ -1,0 +1,28 @@
+.header-ctn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 8px;
+  width: 100%;
+  border: 10px solid black;
+  user-select: none;
+}
+.header-ctn .dark{
+  background-color: black;
+  color: white;
+}
+.header-ctn .light{
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+.video-container {
+  width: 100%;
+  max-width: 896px;
+}
+
+.header-video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+}
