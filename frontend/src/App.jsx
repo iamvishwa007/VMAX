@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import './App.css'
 import NavBar from './Components/NavComponents/NavBar.jsx'
 
@@ -12,6 +12,7 @@ import MovieModal from './Components/MovieModalComponents/MovieModal.jsx';
 
 
 const TMDB_API_KEY="68f498694b28bedb71dc926f68bd68da";
+
 const App = () => {
   const[theme,setTheme]=useTheme();
   const[trending,setTrending]=useState([]);
@@ -20,6 +21,7 @@ const App = () => {
   const[selectedMovie,setSelectedMovie]=useState(null);
   const[loading,setLoading]=useState(false);
   const[searching,setSearching]=useState(false);
+  const exploreRef = useRef(null);
 
  useEffect(()=>{
   fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_API_KEY}`)
@@ -53,6 +55,13 @@ const App = () => {
   e.preventDefault();
   console.log(searchTerm)
   setSearchTerm(searchTerm.trim());
+  if(searchTerm){
+  if (exploreRef.current) {
+    const rect = exploreRef.current.getBoundingClientRect();
+    const scrollTop = window.scrollY + rect.top - 100; // adjust offset as needed
+    window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+  }
+}
  };
 
  const clearSearch=()=>{
@@ -70,6 +79,7 @@ const App = () => {
      handleSearch={handleSearch}
      searching={searching}
      clearSearch={clearSearch}
+     exploreRef={exploreRef} 
      />
 
      <Header theme={theme}/>
@@ -78,7 +88,9 @@ const App = () => {
      trending={trending}
      setSelectedMovie={setSelectedMovie}
      />
-     <Explore theme={theme} 
+     <Explore 
+      ref={exploreRef}
+     theme={theme} 
      searchTerm={searchTerm}
      loading={loading}
      searching={searching}

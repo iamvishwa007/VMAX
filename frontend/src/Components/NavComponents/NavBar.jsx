@@ -9,6 +9,7 @@ const NavBar = ({
   handleSearch,
   searching,
   clearSearch,
+  exploreRef
 }) => {
   
   return (
@@ -16,19 +17,32 @@ const NavBar = ({
       <div className='navlogo-ctn'><h1>VMAX</h1></div>
       <form onSubmit={handleSearch} className='navsearch-ctn'>
         <div className='search-ctn'>
+           <svg
+            className="search-icon"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="11" cy="11" r="7" stroke="currentColor" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" />
+          </svg>
           <input type='text'
-          placeholder='Search movies...'
-          value={searchTerm}
-          onChange={(e)=>setSearchTerm(e.target.value)}
+           placeholder='Search movies...'
+           value={searchTerm}
+           onChange={(e)=>setSearchTerm(e.target.value)}
+           className='search-input'
           />
-           {!searching &&(
-          <button onClick={handleSearch}><i className="bi bi-search"></i></button>
-          )
-          }
-          {searching &&(
-           <button onClick={clearSearch}><i className="bi bi-x-lg"></i></button>
-          )
-          }
+           {searchTerm && (
+            <button
+              type="button"
+              onClick={clearSearch}
+              className="clear-button"
+              title="Clear Search"
+            >
+             <i className="bi bi-x-lg"></i>
+            </button>
+          )}
         </div>
       </form>
       <div className='navtheme-ctn'>

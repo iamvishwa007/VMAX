@@ -1,16 +1,17 @@
-import React from 'react'
+import React,{forwardRef} from 'react'
 import './Explore.css'
 import StarRating from '../StarRating'
-const Explore = ({
+
+const Explore = forwardRef(({
     mainMovies,
     loading,
     searching,
     searchTerm,
     theme,
     setSelectedMovie
-     }) => {
+     },ref) => {
   return (
-    <div className={`explore-ctn ${theme}`}>
+    <div className={`explore-ctn ${theme}`} ref={ref}>
             <h2 className="explorer-title">
                 {(searching && searchTerm)
                     ? <>Search Results {mainMovies.length > 0 && `for "${searchTerm}"`}</>
@@ -57,7 +58,6 @@ const Explore = ({
  
     </div>
   )
-}
-import './Explore.css'
+});
 
-export default Explore 
+export default Explore ;
