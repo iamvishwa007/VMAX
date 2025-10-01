@@ -5,6 +5,7 @@ import NavBar from './Components/NavComponents/NavBar.jsx'
 import useTheme from './Hooks/useTheme.jsx'
 import Header from './Components/HeaderComponets/Header.jsx';
 import Trending from './Components/TrendingComponents/Trending.jsx';
+import Footer from './Components/FooterComponents/Footer.jsx';
 
 
 
@@ -29,22 +30,22 @@ const App = () => {
   .catch(e=>console.log("Error in fetching trending movies"))
  },[])
 
-//  useEffect(()=>{
-//   setLoading(true)
-//   if(!searchTerm.trim()){
-//     fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${TMDB_API_KEY}`)
-//     .then(res=>res.json())
-//     .then(data=> setMainMovies(data.results || []))
-//     .catch(e=>console.log("error in searching movies"))
-//     .finally(()=>{setLoading(false);setSearching(false)})
-//   }else{
-//     fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(searchTerm)}`)
-//     .then(res=>res.json())
-//     .then(data=>setMainMovies(data.results || []))
-//     .catch(e=>console.log("error in searching movies"))
-//     .finally(()=>{setLoading(false);setSearching(false)})
-//   }
-//  },[searchTerm])
+ useEffect(()=>{
+  setLoading(true)
+  if(!searchTerm.trim()){
+    fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${TMDB_API_KEY}`)
+    .then(res=>res.json())
+    .then(data=> setMainMovies(data.results || []))
+    .catch(e=>console.log("error in searching movies"))
+    .finally(()=>{setLoading(false);setSearching(false)})
+  }else{
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(searchTerm)}`)
+    .then(res=>res.json())
+    .then(data=>setMainMovies(data.results || []))
+    .catch(e=>console.log("error in searching movies"))
+    .finally(()=>{setLoading(false);setSearching(false)})
+  }
+ },[searchTerm])
 
  const handleSearch=(e)=>{
   e.preventDefault();
@@ -75,12 +76,13 @@ const App = () => {
      trending={trending}
      setSelectedMovie={setSelectedMovie}
      />
+
      {/* <Explore/>
      {selectedMovie && (
      <MovieModal/>
      )
-     }
-     <Footer/> */}
+     }*/}
+     <Footer theme={theme}/>
     </div>
   )
 }
