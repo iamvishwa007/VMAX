@@ -6,6 +6,8 @@ import useTheme from './Hooks/useTheme.jsx'
 import Header from './Components/HeaderComponets/Header.jsx';
 import Trending from './Components/TrendingComponents/Trending.jsx';
 import Footer from './Components/FooterComponents/Footer.jsx';
+import Explore from './Components/ExploreComponents/Explore.jsx';
+import MovieModal from './Components/MovieModalComponents/MovieModal.jsx';
 
 
 
@@ -35,13 +37,13 @@ const App = () => {
   if(!searchTerm.trim()){
     fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${TMDB_API_KEY}`)
     .then(res=>res.json())
-    .then(data=> setMainMovies(data.results || []))
+    .then(data=> setMainMovies(data.results.slice(0,8) || []))
     .catch(e=>console.log("error in searching movies"))
     .finally(()=>{setLoading(false);setSearching(false)})
   }else{
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(searchTerm)}`)
     .then(res=>res.json())
-    .then(data=>setMainMovies(data.results || []))
+    .then(data=>setMainMovies(data.results.slice(0,8) || []))
     .catch(e=>console.log("error in searching movies"))
     .finally(()=>{setLoading(false);setSearching(false)})
   }
@@ -76,12 +78,20 @@ const App = () => {
      trending={trending}
      setSelectedMovie={setSelectedMovie}
      />
-
-     {/* <Explore/>
-     {selectedMovie && (
-     <MovieModal/>
-     )
-     }*/}
+     <Explore theme={theme} 
+     searchTerm={searchTerm}
+     loading={loading}
+     searching={searching}
+     mainMovies={mainMovies}
+     setSelectedMovie={setSelectedMovie}
+     />
+    {selectedMovie && (
+        <MovieModal
+          selectedMovie={selectedMovie}
+          setSelectedMovie={setSelectedMovie}
+          theme={theme}
+        />
+      )}
      <Footer theme={theme}/>
     </div>
   )
