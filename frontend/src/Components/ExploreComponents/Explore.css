@@ -9,13 +9,13 @@
 .explore-ctn.light {
   background-color: white;
   color: black;
-  border-top: 1px solid black;
+  
 }
 
 .explore-ctn.dark {
   background-color: black;
   color: white;
-  border-top: 1px solid white;
+  
 }
 
 /* Section Title */

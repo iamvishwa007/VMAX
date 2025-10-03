@@ -10,6 +10,11 @@
   color: var(--text-color);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease, color 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
 }
 
 
@@ -138,4 +143,22 @@
 
 .navtheme-ctn button:hover {
   transform: rotate(20deg);
+}
+.language-ctn{
+ margin-right: 50px;
+}
+
+.language-select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.language-select:hover {
+  border-color: #f472b6;
 }

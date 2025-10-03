@@ -1,0 +1,109 @@
+/* ====== Main Body Wrapper ====== */
+.trending-body {
+  width: 100%;
+  height: 400px;
+  padding: 30px 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden; /* avoid unwanted scrollbars */
+}
+
+/* Dark mode */
+.trending-body.dark {
+  background-color: #000;
+  color: #f5f5f5;
+}
+
+/* Light mode */
+.trending-body.light {
+  background-color: #fff;
+  color: #222;
+}
+
+/* ====== Section ====== */
+.trending-section {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Title */
+.trending-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* ====== Horizontal Scroll Container ====== */
+.trending-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+}
+
+/* Hide ugly scrollbar */
+.trending-container::-webkit-scrollbar {
+  height: 8px;
+}
+.trending-container::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.6);
+  border-radius: 10px;
+}
+.trending-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ====== Each Movie Card ====== */
+.trending-item {
+  flex: 0 0 auto;
+  width: 150px;
+  position: relative;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.trending-item:hover {
+  transform: scale(1.08);
+}
+
+/* Poster wrapper */
+.trending-poster-container {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  background: #111;
+}
+
+/* Poster Image */
+.trending-poster {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.trending-poster:hover {
+  opacity: 0.85;
+}
+
+/* ====== Serial Number ====== */
+.trending-number {
+  position: absolute;
+  bottom: 8px;          /* place at bottom */
+  left: 50%;            /* center horizontally */
+  transform: translateX(-50%); 
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;          /* white number */
+  background: rgba(0, 0, 0, 0.6);  /* dark background for visibility */
+  padding: 4px 10px;
+  border-radius: 12px;
+  z-index: 5;
+}

@@ -9,7 +9,9 @@ const NavBar = ({
   handleSearch,
   searching,
   clearSearch,
-  exploreRef
+  exploreRef,
+  language,
+  setLanguage
 }) => {
   
   return (
@@ -45,6 +47,21 @@ const NavBar = ({
           )}
         </div>
       </form>
+      <div className='language-ctn'>
+         <select 
+          value={language} 
+          onChange={(e) => setLanguage(e.target.value)}
+          className="language-select"
+        >
+          <option value="">Select Language</option>
+          <option value="ta">Tamil</option>
+          <option value="kn">Kannada</option>
+          <option value="hi">Hindi</option>
+          <option value="te">Telugu</option>
+          <option value="ml">Malayalam</option>
+          <option value="en">English</option>
+        </select>
+      </div>
       <div className='navtheme-ctn'>
         <button onClick={setTheme}>
           {theme=="dark"?(
